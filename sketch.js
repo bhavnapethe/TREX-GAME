@@ -12,12 +12,19 @@ var score=0;
 
 var gameOver, restart;
 
+var checkpointSound;
+var JumpSound, Diesound;
+
 localStorage["HighestScore"] = 0;
 
 function preload(){
   trex_running =   loadAnimation("trex1.png","trex3.png","trex4.png");
   trex_collided = loadAnimation("trex_collided.png");
   
+  Diesound=loadSound("die.mp3");
+  checkpointSound=loadSound("checkPoint.mp3");
+  JumpSound=loadSound("jump.mp3");
+
   groundImage = loadImage("ground2.png");
   
   cloudImage = loadImage("cloud.png");
@@ -79,6 +86,7 @@ function draw() {
   
     if(keyDown("space") && trex.y >= 159) {
       trex.velocityY = -12;
+      JumpSound.play();
     }
   
     trex.velocityY = trex.velocityY + 0.8
